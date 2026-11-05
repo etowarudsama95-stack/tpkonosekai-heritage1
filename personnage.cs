@@ -1,25 +1,34 @@
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Drawing;
 using System.Net.Security;
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
+using Microsoft.Extensions.Logging;
 namespace tpheritage;
 
-public abstract class personnage
+public class personnage
 {
     private int age;
     protected string nom;
     protected int Energie;
     protected int PointDeVie;
-    protected int PointDevieMax = 500;
+    protected int PointDevieMax;
     protected int PointDeAttque;
     protected int spd;
     protected List<Element> elements;
     protected List<Dialogue> Message;
     protected List<technique> technique;
+    private static int DernierNumero;
+    private int Numero;
+    protected int DgtDeTransformatiom;
+    
+    
 
 
     public personnage(string nom, int age, int Energie, int PointDeVie)
     {
+        this.PointDevieMax = 500;
 
         if (Energie < 0)
         {
@@ -33,9 +42,9 @@ public abstract class personnage
         {
             throw new KonoEvenementException("l'age ne peut pas etre un nombre negatif");
         }
-        if (PointDeVie > PointDevieMax && this is not Umi)
+        if (PointDeVie > PointDevieMax)
         {
-            throw new KonoEvenementException("les point de vie ne peuvent pas etre superieur au pointDeVieMax");
+            PointDeVie = PointDevieMax;
         }
 
 
@@ -44,8 +53,12 @@ public abstract class personnage
         this.Energie = Energie;
         this.PointDeVie = PointDeVie;
         this.technique = new List<technique>();
-        this.PointDevieMax = PointDevieMax;
+        this.Message = new List<Dialogue>();
+        this.technique = new List<technique>();
         this.PointDeAttque = 50;
+        DernierNumero++;
+        
+        this.Numero = DernierNumero;
         this.spd = 120;
 
 
@@ -60,8 +73,10 @@ public abstract class personnage
     }
 
 
-
-
+   public int GetNumero()
+    {
+        return this.Numero;
+    }
 
 
     public string GetNom()
@@ -288,9 +303,19 @@ public abstract class personnage
     }
 
 
-    public  int GetPointDeVieMax()
+    public int GetPointDeVieMax()
     {
-       return this.PointDevieMax;
+        return this.PointDevieMax;
+    }
+
+    public int BoostDeAtq(int montant)
+    {
+        return this.PointDeAttque / montant * 100;
+    }
+    
+    public void GetBonus()
+    {
+        
     }
 
 

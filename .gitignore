@@ -1,0 +1,14 @@
+# Fichiers generes par .NET
+bin/
+obj/
+
+# Configuration locale des editeurs
+.vs/
+.vscode/
+*.user
+*.suo
+
+# Configuration privee
+.env
+.env.*
+!.env.example

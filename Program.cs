@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.IO.Compression;
+using System.Linq.Expressions;
 using System.Runtime.InteropServices;
 
 namespace tpheritage;
@@ -8,86 +9,96 @@ class Program
 {
     static void Main(string[] args)
     {
+        int? choix;
+        int Age;
+        string? Nom;
 
-        try
+
+
+        personnage? P= null;
+         personnage personnage = new Celestia();
+            personnage personnage1 = new Ame();
+            personnage personnage2 = new Eto();
+
+        List<personnage> Konosekai = new List<personnage>();
+        
+            Konosekai.AddRange(personnage, personnage1, personnage2);
+        do
         {
+            Console.WriteLine("               Bienvenue dans konosekai                ");
+            Console.WriteLine("fait ton choix ");
 
+            Console.WriteLine(" 0 QUITTER");
+            Console.WriteLine(" 1 Choisir un perso");
+            Console.WriteLine(" 2 Construire son personnage");
+            Console.WriteLine(" 3 Choisir sa List De Personnage");
+            choix = Convert.ToInt32(Console.ReadLine());
 
-            Ame ame = new Ame();
-            Eto eto = new Eto();
-            personnage akari = new Akari();
-            personnage Gobelin = new Gobelin();
-            Console.WriteLine(ame.GetNom());
-            Console.WriteLine(akari.GetNom());
-            Console.WriteLine(akari.ToString());
-            Console.WriteLine(eto.ToString());
-            Console.WriteLine(Gobelin.ToString());
-            for (int i = 0; i < 3; i++)
+            switch (choix)
             {
-                Console.WriteLine();
+                case 1 :
+                    foreach (personnage LesPersonnage in Konosekai)
+                    {
+                        Console.WriteLine("numero Personnage : " + LesPersonnage.GetNumero() + " Personnage : " + LesPersonnage.GetNom());
+                    }
+                    personnage Choisi = null;
+                    bool programInValide = true;
+
+                    while (programInValide)
+                    {
+                        Choisi = null;
+                        Console.WriteLine("Choisi ton personnage");
+                        Console.Write("ton choix :");
+                        int choix1 = Convert.ToInt32(Console.ReadLine());
+
+                        for (int L = 0 ; L != Konosekai.Count; L++)
+                        {
+                            if (choix1 == Konosekai[L].GetNumero())
+                            {
+                                Choisi = Konosekai[L];
+                                programInValide = false;
+                                break;
+                            }
+
+                            if (L == Konosekai.Count - 1 && programInValide)
+                            {
+                                Console.WriteLine("choix invalide recommence");
+                            }
+                           
+                        }
+                    }
+                    Console.WriteLine("ton perso Actuelle2 :  " + Choisi.GetNom());
+                  
+                    break;
+                case 2 :
+                    Console.WriteLine("Nom du perso : ");
+                    Nom = Console.ReadLine();
+                    Console.WriteLine("Age du perso :");
+                    Age = Convert.ToInt32(Console.ReadLine());
+
+                      P = new personnage(Nom, Age, 200, 500);
+                    break;
+                    default:
+                    Console.WriteLine("Choix Inconnu");
+                    break;
+
+                case 3:
+
+                    Console.WriteLine(P.ToString());
+                    break;
+
+                
+                    
+
+
             }
-            Console.WriteLine("attaque en cours");
-            for (int i = 0; i < 3; i++)
-            {
-                eto.AttaqueNormal(Gobelin);
-            }
-            Console.WriteLine(eto.ToString());
-            Console.WriteLine(Gobelin.ToString());
-            Console.WriteLine(Gobelin.EstKo());
-
-            personnage Rairyu = new Rairyu();
-            personnage Celestia = new Celestia();
-            personnage Gobelin2 = new Gobelin();
-            Celestia celestia = new Celestia();
-
-            Console.WriteLine(Rairyu.ToString());
-            Console.WriteLine(Celestia.ToString());
-            Console.WriteLine(Gobelin2.ToString());
-
-            celestia.AjoutAllie(Rairyu);
-
-            for (int i = 0; i < 10; i++)
-            {
-                Gobelin2.AttaqueNormal(Rairyu);
-            }
-
-            celestia.AfficherAllie();
-            Console.WriteLine(Rairyu.ToString());
-            Console.WriteLine(celestia.ToString());
-            Console.WriteLine(celestia.EstenZadvanced());
-            celestia.ActiverZadvanced();
-            Console.WriteLine(celestia.EstenZadvanced());
-            celestia.TuVasDisparaitre(Gobelin2);
-            Console.WriteLine(celestia.ToString());
-            Console.WriteLine(Gobelin2.ToString());
+          
+        } while (choix != 0);
+        
 
 
-            for (int i = 0; i < 5; i++)
-            {
-                Console.WriteLine("-------------------------");
-
-            }
-
-            Console.WriteLine(ame.PeutParticiperCombo("valseEnflamme", eto));
-            Console.WriteLine(eto.PeutParticiperCombo("ValseEnflamme", ame));
-            personnage Gobelin3 = new Gobelin();
-
-
-            ame.ValseEnflamee(eto, Gobelin3);
-
-            eto.ComboFamille(Celestia);
-            Console.WriteLine(eto.ComboFamille(celestia));
-
-            celestia.JevaisEmbenterMesSoeurs();
-
-
-
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-
-
-        }
+     
+        
+        
     }
 }

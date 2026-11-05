@@ -6,16 +6,18 @@ using tpheritage;
 public class Stella : FilleDuTemps
 {
 
-    bool EstEnZadvanced;
-
-    int DgtDeTransformation;
+    private bool EstEnZadvanced;
 
 
-    Celestia SoeurChiante;
-    Akari SoeurIntello;
+
+
+
+    public Celestia SoeurChiante;
+    public Akari SoeurIntello;
+    public Solar Partenaire;  
     public Stella() : base("stella", 115, 300, 300, false)
     {
-        this.DgtDeTransformation += this.PointDeAttque;
+        this.DgtDeTransformatiom += this.PointDeAttque;
     }
 
 
@@ -44,7 +46,7 @@ public class Stella : FilleDuTemps
 
         int cout = 50;
         this.Energie -= cout;
-        this.DgtDeTransformation = 100;
+        this.DgtDeTransformatiom = 100;
     }
 
     public void AttaqueNormal(personnage cible)
@@ -54,19 +56,86 @@ public class Stella : FilleDuTemps
 
         if (ActiverZadvanced())
         {
-            int DegatDeTransfo = this.DgtDeTransformation;
+            int DegatDeTransfo = this.DgtDeTransformatiom;
             cible.RecevoirDegat(DegatDeTransfo);
         }
     }
 
-    public void ExplostionCataclysmique()
+    public void ExplostionCataclysmique(personnage cible)
     {
         if (!ActiverZadvanced())
         {
             Console.WriteLine("Stella dois activer le Z advanced pour cette attaque");
-            
         }
+        else
+        {
+            int DegatDattaque;
+            DegatDattaque = this.DgtDeTransformatiom;
+            cible.RecevoirDegat(DegatDattaque);
+        }
+
+        
     }
+
+    public void EnchainementDynamique(Solar solar, personnage ennemi)
+
+    {
+        int DegatDeCombo;
+        if (solar is null)
+        {
+            throw new StellaException("je veux solar sinon je plante cette attaque");
+        }
+
+        if (solar.EstKo() is true)
+        {
+            throw new StellaException("Solar me laisse pas toute seule je peux pas utiliser ce combo sinon....");
+        }
+        if (this.EstKo())
+        {
+            throw new StellaException("stella est ko");
+        }
+
+
+        Random random = new Random();
+
+        DegatDeCombo = random.Next(200, 400);
+        ennemi.RecevoirDegat(DegatDeCombo);
+
+
+
+    }
+
+
+
+    public void FusionDynamique(personnage ennemi)
+    {
+        int DegatDeCombo;
+        if (Partenaire is null)
+        {
+            throw new StellaException("je veux solar sinon je plante cette attaque");
+        }
+
+        if (Partenaire.EstKo() is true)
+        {
+            throw new StellaException("Solar me laisse pas toute seule je peux pas utiliser ce combo sinon....");
+        }
+        if (this.EstKo())
+        {
+            throw new StellaException("stella est ko");
+        }
+
+
+
+        Random Combo = new Random();
+        DegatDeCombo = Combo.Next(300, 450);
+        ennemi.RecevoirDegat(DegatDeCombo);
+
+    }
+    
+    
+
+
+
     
 
 

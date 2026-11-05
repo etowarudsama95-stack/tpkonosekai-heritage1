@@ -9,21 +9,32 @@ public class Ame : FilleDuTemps
 {
 
     private int NbActivation;
-    private Celestia aine;
-    private Stella fille2;
-    private Akari Cadette;
 
-    private Eto partenaire;
+    private Celestia celestia;
+    private Stella stella;
 
-
+    private Akari akari;
 
 
 
 
-    public Ame() : base("ame", 500,  400 , 300, false)
+
+
+
+
+
+
+    public Ame() : base("ame", 500, 400, 300, false)
     {
         this.NbActivation = 0;
         this.PointDevieMax = 300;
+    }
+    
+    public void lierEnfant(Celestia c, Stella s, Akari a)
+    {
+        this.celestia = c;
+        this.stella = s;
+        this.akari = a;
     }
 
 
@@ -63,9 +74,6 @@ public class Ame : FilleDuTemps
             this.Energie -= 20;
         }
     }
-
-
-
     public void ValseEnflamee(Eto allie, personnage cible )
     {
         int cout = 50;
@@ -98,9 +106,6 @@ public class Ame : FilleDuTemps
         {
             throw new KonoEvenementException("eto est ko");
         }
-
-
-
         this.Energie -= cout;
         allie.ConsommerEnergie(cout);
         int DGtValseEnflamme = this.PointDeAttque + allie.GetPointDeAttaque();
@@ -110,12 +115,7 @@ public class Ame : FilleDuTemps
         Console.WriteLine(this.ToString());
         Console.WriteLine(allie.ToString());
         Console.WriteLine(cible.ToString());
-
-
    }
-
-        
-
     public override bool PeutParticiperCombo(string nomCombo, personnage Partenaire)
     {
         if (Partenaire is Eto || nomCombo == "ValseEnflamme")
@@ -126,46 +126,26 @@ public class Ame : FilleDuTemps
         {
             return false;
         }
-
-
     }
 
 
 
-
-    public void ArreterDeVousChamailler(Celestia aine, Stella fille, Akari Cadette)
+    public List<personnage>MesFilles()
     {
+        List<personnage> Enfants = new List<personnage>();
+        Enfants.Add(this.celestia);
+        Enfants.Add(this.stella);
+        Enfants.Add(this.akari);
+        return Enfants;
+    }
 
-
-        List<personnage> Famille = new List<personnage>();
-
-        Famille.AddRange(new personnage [] { Cadette, fille, aine}
+    public void VerifierEtatDesFilles()
+    {
         
-        );
-
-
-        foreach (personnage Familles in Famille)
-        {
-
-            if ( Familles.GetPointDeVieMax() != Familles.GetPointDeVie())
-            {
-                
-                int SoinsComplet = Familles.GetPointDeVieMax() - Familles.GetPointDeVie();
-                Familles.RecevoirSoins(SoinsComplet);
-            
-                
-            }
-
-        }
-
     }
-    
 
 
-    public void stackoverflow()
-    {
-        stackoverflow();
-    }
+
 
 
 
