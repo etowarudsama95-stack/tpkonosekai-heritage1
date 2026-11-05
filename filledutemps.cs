@@ -8,7 +8,7 @@ public class FilleDuTemps : personnage
 
 
 
-    public FilleDuTemps(string nom,  int age, int Energie, int PointDeVie, bool ModeCelesteEstActif) : base(nom, age, Energie, PointDeVie)
+    public FilleDuTemps(string nom, int age, int Energie, int PointDeVie, bool ModeCelesteEstActif) : base(nom, age, Energie, PointDeVie)
     {
         this.ModeCelesteEstActif = ModeCelesteEstActif;
     }
@@ -52,5 +52,6 @@ public class FilleDuTemps : personnage
 
 
     }
+
 
 }

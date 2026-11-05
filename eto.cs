@@ -9,7 +9,7 @@ public class Eto : personnage
 {
 
     private bool EstEnZadvanced;
-    private Celestia Fille;
+    public Celestia Fille;
 
 
     public Eto() : base("eto", 500, 500, 300)
@@ -60,12 +60,6 @@ public class Eto : personnage
 
         }
 
-        if (Famille is Celestia)
-        {
-            return  new technique("braisier explosive multiple", 50, 300, "TechniqueDefeu");
-            
-        }
-
         if (Famille is Stella)
         {
             return new technique("broyeur compressif", 50, 300, "TechniqueDeFeu");
@@ -76,22 +70,27 @@ public class Eto : personnage
             return new technique("vague infernal", 50, 300, "TechniqueCelesteDeFeu");
         }
 
-        
-        technique comboFille = new technique("braisier explosive multiple", 50, 300, "TechniqueDefeu");
+         if (Famille is Celestia)
+        {
+          throw new  NotImplementedException();
+        }
 
+        technique comboFille = new technique("braisier explosive multiple", 50, 300, "TechniqueDefeu");
 
         Fille.AjouterTechnique(comboFille);
 
         return null;
 
-
     }
 
 
     
-    
 
 
-        
 
-    }
+
+
+
+
+
+}

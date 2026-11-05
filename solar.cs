@@ -1,6 +1,6 @@
 using tpheritage;
 
-class Solar : personnage
+public class Solar : personnage
 {
     public Solar() : base("solar", 110, 300, 450)
     {
