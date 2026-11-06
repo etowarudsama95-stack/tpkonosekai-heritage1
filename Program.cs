@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel;
+using System.Data;
 using System.IO.Compression;
 using System.Linq.Expressions;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 
 namespace tpheritage;
 
@@ -13,7 +15,7 @@ class Program
         int Age;
         string? Nom;
 
-
+      personnage Choisi = null;
 
         personnage? P= null;
          personnage personnage = new Celestia();
@@ -21,6 +23,7 @@ class Program
             personnage personnage2 = new Eto();
 
         List<personnage> Konosekai = new List<personnage>();
+
         
             Konosekai.AddRange(personnage, personnage1, personnage2);
         do
@@ -29,10 +32,18 @@ class Program
             Console.WriteLine("fait ton choix ");
 
             Console.WriteLine(" 0 QUITTER");
-            Console.WriteLine(" 1 Choisir un perso");
+            if (Choisi == null)
+            {
+                Console.WriteLine(" 1 Choisir un Perso");
+            }
+            else
+            {
+                Console.WriteLine(" 1 changer un perso (Perso Actuelle : " +  Choisi.GetNom()+ ")");
+            }
             Console.WriteLine(" 2 Construire son personnage");
             Console.WriteLine(" 3 Choisir sa List De Personnage");
             choix = Convert.ToInt32(Console.ReadLine());
+            int choix1;
 
             switch (choix)
             {
@@ -41,15 +52,19 @@ class Program
                     {
                         Console.WriteLine("numero Personnage : " + LesPersonnage.GetNumero() + " Personnage : " + LesPersonnage.GetNom());
                     }
-                    personnage Choisi = null;
+                    
                     bool programInValide = true;
 
                     while (programInValide)
                     {
                         Choisi = null;
-                        Console.WriteLine("Choisi ton personnage");
+                        Console.WriteLine("Choisi/change ton personnage");
                         Console.Write("ton choix :");
-                        int choix1 = Convert.ToInt32(Console.ReadLine());
+                        while (!int.TryParse(Console.ReadLine(), out choix1))
+                        {
+                            Console.WriteLine("Choisi un vrai nombre");
+                            Console.Write("ton choix : ");
+                        }
 
                         for (int L = 0 ; L != Konosekai.Count; L++)
                         {
@@ -67,21 +82,67 @@ class Program
                            
                         }
                     }
-                    Console.WriteLine("ton perso Actuelle2 :  " + Choisi.GetNom());
+                    Console.WriteLine("ton perso Actuelle :  " + Choisi.GetNom());
                   
                     break;
                 case 2 :
-                    Console.WriteLine("Nom du perso : ");
-                    Nom = Console.ReadLine();
-                    Console.WriteLine("Age du perso :");
-                    Age = Convert.ToInt32(Console.ReadLine());
+                    int nbchoice;
+                    bool enMarche = true;
+                    
+                    while (enMarche)
+                    {
+                        
+                    
+                    Console.WriteLine("Combien de personnage veut tu crée ? ");
+                    Console.Write("ton nombre :");
+                    while (!int.TryParse(Console.ReadLine(), out nbchoice))
+                    {
+                        Console.WriteLine("Chosi un nombre Valide");
+                        Console.Write("ton choix :");
+                    }
+                    if (nbchoice < 0)
+                        {
+                            Console.WriteLine("choisis un nombre positif");
+                        }else
+                        {
+                            List <personnage> personnageCree;
+                            for (int i = 0; i < nbchoice; i++)
+                            {
+                                while (true)
+                                {
+                                    Console.WriteLine("choisi un nom");
+                                    string nom = Console.ReadLine().Replace("","");
+                                    if (string.IsNullOrWhiteSpace(nom))
+                                    {
+                                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                                    Console.WriteLine("rentre un vrai nom !");
+                                    Console.ResetColor();
+                                    continue;
+                                    }
+                                    Console.WriteLine("Choisi son age");
+                                    int age;
 
-                      P = new personnage(Nom, Age, 200, 500);
-                    break;
-                    default:
-                    Console.WriteLine("Choix Inconnu");
-                    break;
+                                    while (!int.TryParse(Console.ReadLine(), out age))
+                                    {   
+                                        Console.ForegroundColor = ConsoleColor.DarkRed;
+                                        Console.WriteLine("Choisi un vrai nombre !");
+                                        Console.ResetColor();
+                                        continue;
+                                    }
 
+                                    enMarche = false;
+                                    
+                                }
+
+                                 
+                            }
+                        }
+
+
+
+                    }
+
+                    break;
                 case 3:
 
                     Console.WriteLine(P.ToString());
