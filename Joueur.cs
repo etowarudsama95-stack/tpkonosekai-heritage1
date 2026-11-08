@@ -2,7 +2,7 @@ using tpheritage;
 
 public class Joueur
 {
-    List<personnage> personnage;
+    List<Personnage> personnage;
 
     public Joueur()
     {

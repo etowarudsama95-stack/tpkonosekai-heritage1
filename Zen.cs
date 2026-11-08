@@ -1,6 +1,6 @@
 using tpheritage;
 
-class Zen : personnage
+class Zen : Personnage
 {
     
 

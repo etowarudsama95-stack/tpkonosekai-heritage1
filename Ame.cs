@@ -74,7 +74,7 @@ public class Ame : FilleDuTemps
             this.Energie -= 20;
         }
     }
-    public void ValseEnflamee(Eto allie, personnage cible )
+    public void ValseEnflamee(Eto allie, Personnage cible )
     {
         int cout = 50;
             
@@ -116,7 +116,7 @@ public class Ame : FilleDuTemps
         Console.WriteLine(allie.ToString());
         Console.WriteLine(cible.ToString());
    }
-    public override bool PeutParticiperCombo(string nomCombo, personnage Partenaire)
+    public override bool PeutParticiperCombo(string nomCombo, Personnage Partenaire)
     {
         if (Partenaire is Eto || nomCombo == "ValseEnflamme")
         {
@@ -130,9 +130,9 @@ public class Ame : FilleDuTemps
 
 
 
-    public List<personnage>MesFilles()
+    public List<Personnage>MesFilles()
     {
-        List<personnage> Enfants = new List<personnage>();
+        List<Personnage> Enfants = new List<Personnage>();
         Enfants.Add(this.celestia);
         Enfants.Add(this.stella);
         Enfants.Add(this.akari);

@@ -9,7 +9,7 @@ namespace tpheritage;
 
 
 
-class Gobelin : personnage
+class Gobelin : Personnage
 {
 
  private static int NumeroGobelin = 0;
@@ -45,7 +45,7 @@ class BossGobelin : Gobelin
 {
     List<Gobelin> Gobelin = new List<Gobelin>();
 
-    public BossGobelin(int Energie, int PointDeVie) : base(GenererNom(), 150, 300)
+    public BossGobelin() : base(GenererNom(), 150, 300)
     {
         foreach (Gobelin gobelins in this.Gobelin)
         {

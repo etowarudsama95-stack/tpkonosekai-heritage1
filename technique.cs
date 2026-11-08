@@ -7,7 +7,7 @@ public class technique
     private int Degat;
     private string Description;
 
-    private personnage personnages;
+    private Personnage personnages;
 
 
     public technique(string nom, int coutEnergie, int Degat, string Description)

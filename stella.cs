@@ -49,7 +49,7 @@ public class Stella : FilleDuTemps
         this.DgtDeTransformatiom = 100;
     }
 
-    public void AttaqueNormal(personnage cible)
+    public void AttaqueNormal(Personnage cible)
     {
         int Degat = this.PointDeAttque;
         cible.RecevoirDegat(Degat);
@@ -61,7 +61,7 @@ public class Stella : FilleDuTemps
         }
     }
 
-    public void ExplostionCataclysmique(personnage cible)
+    public void ExplostionCataclysmique(Personnage cible)
     {
         if (!ActiverZadvanced())
         {
@@ -77,7 +77,7 @@ public class Stella : FilleDuTemps
         
     }
 
-    public void EnchainementDynamique(Solar solar, personnage ennemi)
+    public void EnchainementDynamique(Solar solar, Personnage ennemi)
 
     {
         int DegatDeCombo;
@@ -107,7 +107,7 @@ public class Stella : FilleDuTemps
 
 
 
-    public void FusionDynamique(personnage ennemi)
+    public void FusionDynamique(Personnage ennemi)
     {
         int DegatDeCombo;
         if (Partenaire is null)

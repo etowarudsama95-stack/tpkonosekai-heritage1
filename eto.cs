@@ -5,7 +5,7 @@ using System.Runtime.Serialization;
 
 namespace tpheritage;
 
-public class Eto : personnage
+public class Eto : Personnage
 {
 
     private bool EstEnZadvanced;
@@ -18,7 +18,7 @@ public class Eto : personnage
 
     }
 
-    public override bool PeutParticiperCombo(string nomCombo, personnage Partenaire)
+    public override bool PeutParticiperCombo(string nomCombo, Personnage Partenaire)
     {
         if (Partenaire is Ame || nomCombo == "ValseEnflamme")
         {
@@ -44,7 +44,7 @@ public class Eto : personnage
 
     }
 
-    public technique ComboFamille(personnage  Famille)
+    public technique ComboFamille(Personnage  Famille)
     {
         if (Famille is not Ame && Famille is not Celestia && Famille is not Stella && Famille is not Akari)
         {

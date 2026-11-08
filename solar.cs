@@ -1,6 +1,6 @@
 using tpheritage;
 
-public class Solar : personnage
+public class Solar : Personnage
 {
     public Solar() : base("solar", 110, 300, 450)
     {
@@ -8,7 +8,7 @@ public class Solar : personnage
     }
 
 
-    public override bool PeutParticiperCombo(string nomCombo, personnage Partenaire)
+    public override bool PeutParticiperCombo(string nomCombo, Personnage Partenaire)
     {
         if (Partenaire is Stella || nomCombo == "explosion stellaire")
         {

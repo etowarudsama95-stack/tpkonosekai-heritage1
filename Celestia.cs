@@ -15,7 +15,7 @@ public class Celestia : FilleDuTemps
     public Akari imouto2;
     public Ame MamanCheri;
     public Eto papaCheri;
-    private List<personnage> allie;
+    private List<Personnage> allie;
 
     protected List<Dialogue> message;
     public Celestia() : base("Celestia", 130, 300, 500, false)
@@ -25,7 +25,7 @@ public class Celestia : FilleDuTemps
         this.PointDeAttque = 200;
        
     }
-    public void AjoutAllie(personnage allie)
+    public void AjoutAllie(Personnage allie)
     {
         if (allie is null)
         {
@@ -52,7 +52,7 @@ public class Celestia : FilleDuTemps
 
             DGTAleatoire += this.PointDeAttque;
 
-            foreach (personnage allie in this.allie)
+            foreach (Personnage allie in this.allie)
             {
                 if (allie.EstKo())
                 {
@@ -123,7 +123,7 @@ public class Celestia : FilleDuTemps
     }
     public bool AllieEstKo()
     {
-        foreach (personnage allies in this.allie)
+        foreach (Personnage allies in this.allie)
         {
             if (allies.EstKo())
             {
@@ -137,7 +137,7 @@ public class Celestia : FilleDuTemps
         return this.EstEnZadavanced = false;
     }
 
-    public void DesactiverZadvanced(personnage celestia)
+    public void DesactiverZadvanced(Personnage celestia)
     {
         if (celestia is Celestia)
         {
@@ -154,21 +154,21 @@ public class Celestia : FilleDuTemps
         }
         else
         {
-            foreach (personnage allie in this.allie)
+            foreach (Personnage allie in this.allie)
             {
                 Console.WriteLine("allie de celestia :" + allie.GetNom());
             }
         }
     }
-    public override void AttaqueNormal(personnage cible)
+    public override void AttaqueNormal(Personnage cible)
     {
         cible.RecevoirDegat(this.PointDeAttque);
     }
-    public void TuVasDisparaitre(personnage cible)
+    public void TuVasDisparaitre(Personnage cible)
     {
         if (this.PerteDeControl)
         {
-            foreach (personnage allie in this.allie)
+            foreach (Personnage allie in this.allie)
             {
                 if (allie is Rairyu && allie.EstKo())
                 {
@@ -224,8 +224,8 @@ public class Celestia : FilleDuTemps
     }
 
     public static bool ContientPersonnage<T>(
-   List<personnage> personnages
-) where T : personnage
+   List<Personnage> personnages
+) where T : Personnage
     {
         return personnages.Any(perso => perso is T);
     }

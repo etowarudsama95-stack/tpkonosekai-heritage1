@@ -2,7 +2,7 @@ using System.Drawing;
 using System.Runtime.CompilerServices;
 namespace tpheritage;
 
-public class Rairyu : personnage
+public class Rairyu : Personnage
 {
 private  bool EstEnFusionFoudroyante;
 
@@ -44,7 +44,7 @@ private  bool EstEnFusionFoudroyante;
         int boostDetransfo = 100;
         this.DgtDeTransformatiom += boostDetransfo;
     }
-    public override void AttaqueNormal(personnage cible)
+    public override void AttaqueNormal(Personnage cible)
     {
 
         if (this.EstKo())

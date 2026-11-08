@@ -1,7 +1,7 @@
 using System.Drawing;
 
 namespace tpheritage;
-public class FilleDuTemps : personnage
+public class FilleDuTemps : Personnage
 {
     protected bool ModeCelesteEstActif;
 

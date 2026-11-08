@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 using Microsoft.Extensions.Logging;
 namespace tpheritage;
 
-public class personnage
+public class Personnage
 {
     private int age;
     protected string nom;
@@ -26,7 +26,7 @@ public class personnage
     
 
 
-    public personnage(string nom, int age, int Energie, int PointDeVie)
+    public Personnage(string nom, int age, int Energie, int PointDeVie)
     {
         this.PointDevieMax = 500;
 
@@ -67,7 +67,7 @@ public class personnage
 
 
     public static bool ContientPersonnage<T>(
-        List<personnage> personnages) where T : personnage
+        List<Personnage> personnages) where T : Personnage
     {
         return personnages.Any(perso => perso is T);
     }
@@ -140,7 +140,7 @@ public class personnage
         }
     }
 
-    public void UtiliserTechnique(string nomTechnique, personnage Cible)
+    public void UtiliserTechnique(string nomTechnique, Personnage Cible)
     {
 
         foreach (technique uneTechnique in this.technique)
@@ -174,7 +174,7 @@ public class personnage
     }
 
 
-    public bool EstKo(personnage personnage)
+    public bool EstKo(Personnage personnage)
     {
         if (personnage.EstKo())
         {
@@ -197,7 +197,7 @@ public class personnage
     }
 
 
-    public virtual bool PeutParticiperCombo(string nomCombo, personnage Partenaire)
+    public virtual bool PeutParticiperCombo(string nomCombo, Personnage Partenaire)
     {
         return false;
     }
@@ -229,7 +229,7 @@ public class personnage
         return this.PointDeAttque;
     }
 
-    public virtual void AttaqueNormal(personnage cible)
+    public virtual void AttaqueNormal(Personnage cible)
     {
         if (EstKo())
         {
