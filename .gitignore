@@ -12,3 +12,7 @@ obj/
 .env
 .env.*
 !.env.example
+
+# Fichier local exclu du depot
+MehdiSQL.cs
+mehdiSQL.cs
