@@ -70,67 +70,17 @@ Le programme met aussi en place des listes de personnages et d'ennemis. Plusieur
 
 Les méthodes de transformation ou de combo décrites ci-dessous existent surtout au **niveau des classes C#**. Elles ne doivent pas être confondues avec des fonctionnalités toutes accessibles dans l'interface console.
 
-## Diagrammes de cas d'utilisation
+## Diagramme UML de cas d'utilisation
 
-Les schémas suivants représentent les **cas d'utilisation du TP** avec Mermaid, un format lisible directement dans les README GitHub et GitLab. Les cas à terminer sont identifiés explicitement.
+Un **diagramme de cas d'utilisation UML** présente les actions accessibles à un **acteur**, représenté par un bonhomme, avec des **ovales** pour les fonctionnalités et un **rectangle** pour la frontière du système.
 
-### 1. Parcours de l'utilisateur dans la console
+![Diagramme UML de cas d'utilisation de KonoSekai, avec acteur Joueur et ovales](docs/use-case-konosekai.svg)
 
-~~~mermaid
-flowchart LR
-    U["Utilisateur de la console"]
-    subgraph APP["Application console KonoSekai"]
-        A(["Choisir un personnage"])
-        B(["Créer des personnages"])
-        C(["Afficher nom et âge"])
-        D(["Préparer un combat"])
-        E(["Choisir un gobelin et attaquer"])
-        F(["Constater la victoire"])
-        G(["Soigner un allié : à terminer"])
-        H(["Affronter le boss : à terminer"])
-    end
-    U --- A
-    U --- B
-    U --- D
-    B -.-> C
-    D -.-> E
-    E -.-> F
-    D -.-> G
-    D -.-> H
-    classDef todo fill:#fff4e6,stroke:#c27a17,color:#70420a,stroke-dasharray:5 5
-    class G,H todo
-~~~
+[Ouvrir le diagramme en grand](docs/use-case-konosekai.svg)
 
-**Lecture :** l'acteur est l'utilisateur qui interagit avec le menu. Les ellipses indiquent les actions étudiées. Les cases en pointillés signalent des parcours non finalisés ; ce dessin ne prétend pas que l'ensemble du menu fonctionne sans erreur.
+**Acteur :** le joueur qui utilise l'application console. **Système :** le TP KonoSekai en C#. Les cas en pointillés sont prévus ou incomplets, et ne sont pas présentés comme terminés.
 
-### 2. Capacités du modèle objet, testables en C#
-
-~~~mermaid
-flowchart LR
-    D["Développeur / testeur du TP"]
-    subgraph MODEL["Classes métier du projet"]
-        P(["Créer un objet Personnage"])
-        T(["Ajouter ou utiliser une technique"])
-        EN(["Contrôler le coût en énergie"])
-        DEG(["Infliger des dégâts et détecter un KO"])
-        TRANS(["Activer une transformation"])
-        COMBO(["Déclencher un combo entre alliés"])
-        ASSOC(["Associer des personnages"])
-        EX(["Lever une exception métier"])
-    end
-    D --- P
-    D --- T
-    D --- TRANS
-    D --- COMBO
-    D --- ASSOC
-    T -.-> EN
-    T -.-> DEG
-    TRANS -.-> EN
-    COMBO -.-> EN
-    EN -.-> EX
-~~~
-
-Ce deuxième schéma montre les comportements que les classes cherchent à modéliser. Il s'agit de **cas de test et d'apprentissage POO**, pas d'un deuxième écran de l'application.
+Le diagramme montre les **besoins fonctionnels visibles au niveau du menu**. La gestion de l'énergie, les transformations, les classes spécialisées, le polymorphisme et les exceptions sont des **règles et mécanismes internes** : ils sont documentés dans les sections techniques et dans le diagramme de classes, et non confondus avec des fonctionnalités directement accessibles par le joueur.
 
 ## Diagramme de classes
 
