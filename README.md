@@ -1,93 +1,307 @@
-# TPkonosekai heritage1
+# TP Héritage C# | KonoSekai
 
+**Projet personnel de programmation orientée objet (POO) en C#**, commencé pendant l'été 2026 et construit autour de l'univers original **KonoSekai**.
 
+L'objectif de ce TP est de transformer des personnages de fiction en objets C#, puis de faire interagir ces objets dans une application console : héritage, listes, associations, combats, transformations, polymorphisme et gestion des erreurs.
 
-## Getting started
+> **État du projet : prototype pédagogique en évolution.** Plusieurs mécaniques existent dans les classes, mais ne sont pas encore accessibles depuis le menu console. Certaines parties sont incomplètes ou nécessitent des corrections.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+## Sommaire
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+- [L'univers KonoSekai](#lunivers-konosekai)
+- [Objectifs pédagogiques](#objectifs-pédagogiques)
+- [Fonctionnement du programme](#fonctionnement-du-programme)
+- [Diagrammes de cas d'utilisation](#diagrammes-de-cas-dutilisation)
+- [Diagramme de classes](#diagramme-de-classes)
+- [Exemples de mécaniques C#](#exemples-de-mécaniques-c)
+- [Installation et exécution](#installation-et-exécution)
+- [État actuel et pistes d'amélioration](#état-actuel-et-pistes-damélioration)
 
-## Add your files
+## L'univers KonoSekai
 
-* [Create](https://docs.gitlab.com/user/project/repository/web_editor/#create-a-file) or [upload](https://docs.gitlab.com/user/project/repository/web_editor/#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+**KonoSekai** est un univers de fiction original qui réunit des personnages aux pouvoirs élémentaires, célestes et temporels. Les liens familiaux, les alliances et les relations entre personnages sont aussi importants que les capacités de combat.
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/portfolio-simon-zacharie-2026/tpkonosekai-heritage1.git
-git branch -M main
-git push -uf origin main
-```
+Quelques protagonistes donnent son identité au TP :
 
-## Integrate with your tools
+| Personnage | Place dans l'univers | Rôle dans le projet C# |
+| --- | --- | --- |
+| **Eto** | Père de Célestia, Stella et Akari ; partenaire d'Amé | Personnage spécialisé, combos familiaux et techniques |
+| **Amé (Amélie)** | Mère des trois filles ; maîtrise des capacités temporelles | Mode Céleste, association avec ses filles, combo avec Eto |
+| **Célestia** | Fille aînée d'Eto et d'Amé | Z Advanced, gestion d'alliés, perte de contrôle et attaques spécialisées |
+| **Stella** | Deuxième fille de la famille | Z Advanced, attaques spéciales et combos avec Solar |
+| **Akari** | Benjamine de la famille | Classe spécialisée héritant de FilleDuTemps |
+| **Rairyu** | Proche de Célestia depuis l'enfance | Fusion foudroyante et interactions avec Célestia |
+| **Umi** | Mère de Rairyu et Mizuki dans l'univers | Transformation Eau des Abysses, héritage FilleDuTemps |
+| **Solar** | Partenaire de Stella | Vérification de combos et associations entre personnages |
+| **Gobelins** | Adversaires destinés aux affrontements | Ennemis, numérotation et variante BossGobelin |
 
-* [Set up project integrations](https://gitlab.com/portfolio-simon-zacharie-2026/tpkonosekai-heritage1/-/settings/integrations)
+**À distinguer :** les relations de l'univers servent de contexte narratif ; une relation familiale n'implique pas un héritage entre classes C#. Les valeurs et âges écrits dans certains constructeurs correspondent à une version du TP et ne constituent pas nécessairement la chronologie actuelle de l'univers.
 
-## Collaborate with your team
+## Objectifs pédagogiques
 
-* [Invite team members and collaborators](https://docs.gitlab.com/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/user/project/merge_requests/creating_merge_requests/)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/user/project/issues/managing_issues/#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+Ce TP permet de mettre en pratique les notions suivantes :
 
-## Test and Deploy
+| Notion de POO / C# | Mise en application dans le dépôt |
+| --- | --- |
+| **Classes et objets** | Personnage, technique, Dialogue, Gobelin… |
+| **Constructeurs** | Initialiser les statistiques de chaque personnage |
+| **Encapsulation** | Attributs privés ou protégés et méthodes publiques |
+| **Héritage** | FilleDuTemps hérite de Personnage ; Celestia hérite de FilleDuTemps |
+| **Polymorphisme** | Redéfinitions de méthodes virtuelles, notamment AttaqueNormal et ActiverModeCeleste |
+| **Associations** | Listes d'alliés et de techniques, liens entre personnages |
+| **Collections génériques** | List<Personnage>, List<technique>, List<Dialogue> |
+| **Membres statiques** | Numéro unique attribué à chaque Personnage via DernierNumero |
+| **Exceptions personnalisées** | KonoEvenementException, EnergieInsuffisante, TechniqueException, etc. |
+| **Conditions et boucles** | Menu, choix de personnages, tours de combat et validations de saisie |
 
-Use the built-in continuous integration in GitLab.
+Le projet reprend l'idée d'un TP de gestion d'objets (comptes, opérations, restrictions) pour l'appliquer à un domaine plus concret et personnel : des personnages et des combats.
 
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/topics/autodevops/requirements/)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ci/environments/protected_environments/)
+## Fonctionnement du programme
 
-***
+Le point d'entrée est **Program.cs**. Le menu console propose notamment :
 
-# Editing this README
+1. **Choisir ou changer de personnage** parmi les personnages proposés.
+2. **Construire des personnages**, en saisissant leur nom et leur âge.
+3. **Afficher les informations** des personnages créés.
+4. **Préparer un affrontement contre des gobelins** et sélectionner une cible à attaquer.
+5. **Quitter l'application**.
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+Le programme met aussi en place des listes de personnages et d'ennemis. Plusieurs parcours restent expérimentaux : les soins depuis le menu ne sont pas implémentés, le choix de liste est incomplet et le combat contre un boss apparaît comme une option à développer.
 
-## Suggestions for a good README
+Les méthodes de transformation ou de combo décrites ci-dessous existent surtout au **niveau des classes C#**. Elles ne doivent pas être confondues avec des fonctionnalités toutes accessibles dans l'interface console.
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+## Diagrammes de cas d'utilisation
 
-## Name
-Choose a self-explaining name for your project.
+Les schémas suivants représentent les **cas d'utilisation du TP** avec Mermaid, un format lisible directement dans les README GitHub et GitLab. Les cas à terminer sont identifiés explicitement.
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+### 1. Parcours de l'utilisateur dans la console
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+~~~mermaid
+flowchart LR
+    U["Utilisateur de la console"]
+    subgraph APP["Application console KonoSekai"]
+        A(["Choisir un personnage"])
+        B(["Créer des personnages"])
+        C(["Afficher nom et âge"])
+        D(["Préparer un combat"])
+        E(["Choisir un gobelin et attaquer"])
+        F(["Constater la victoire"])
+        G(["Soigner un allié : à terminer"])
+        H(["Affronter le boss : à terminer"])
+    end
+    U --- A
+    U --- B
+    U --- D
+    B -.-> C
+    D -.-> E
+    E -.-> F
+    D -.-> G
+    D -.-> H
+    classDef todo fill:#fff4e6,stroke:#c27a17,color:#70420a,stroke-dasharray:5 5
+    class G,H todo
+~~~
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+**Lecture :** l'acteur est l'utilisateur qui interagit avec le menu. Les ellipses indiquent les actions étudiées. Les cases en pointillés signalent des parcours non finalisés ; ce dessin ne prétend pas que l'ensemble du menu fonctionne sans erreur.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+### 2. Capacités du modèle objet, testables en C#
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+~~~mermaid
+flowchart LR
+    D["Développeur / testeur du TP"]
+    subgraph MODEL["Classes métier du projet"]
+        P(["Créer un objet Personnage"])
+        T(["Ajouter ou utiliser une technique"])
+        EN(["Contrôler le coût en énergie"])
+        DEG(["Infliger des dégâts et détecter un KO"])
+        TRANS(["Activer une transformation"])
+        COMBO(["Déclencher un combo entre alliés"])
+        ASSOC(["Associer des personnages"])
+        EX(["Lever une exception métier"])
+    end
+    D --- P
+    D --- T
+    D --- TRANS
+    D --- COMBO
+    D --- ASSOC
+    T -.-> EN
+    T -.-> DEG
+    TRANS -.-> EN
+    COMBO -.-> EN
+    EN -.-> EX
+~~~
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+Ce deuxième schéma montre les comportements que les classes cherchent à modéliser. Il s'agit de **cas de test et d'apprentissage POO**, pas d'un deuxième écran de l'application.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+## Diagramme de classes
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+Diagramme **simplifié d'après les fichiers présents sur la branche main**, et non d'après un ancien UML théorique du TP :
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+~~~mermaid
+classDiagram
+    class Personnage {
+        -int age
+        #string nom
+        #int Energie
+        #int PointDeVie
+        -static int DernierNumero
+        -int Numero
+        +GetNumero() int
+        +AjouterTechnique(technique)
+        +UtiliserTechnique(nomTechnique, cible)
+        +RecevoirDegat(degat)
+        +AttaqueNormal(cible)
+        +EstKo() bool
+        +PeutParticiperCombo(nom, partenaire) bool
+    }
+    class FilleDuTemps {
+        #bool ModeCelesteEstActif
+        +ActiverModeCeleste()
+        +DesactiverModeCeleste()
+        +EstEnModeCeleste() bool
+    }
+    class Celestia {
+        -bool EstEnZadavanced
+        -bool PerteDeControl
+        -List~Personnage~ allie
+        +ActiverZadvanced()
+        +AjoutAllie(allie)
+        +ReprendreControle(rairyu)
+    }
+    class Ame {
+        -int NbActivation
+        +ActiverModeCeleste()
+        +ValseEnflamee(eto, cible)
+        +lierEnfant(c, s, a)
+    }
+    class Eto {
+        +PeutParticiperCombo(nom, partenaire) bool
+        +ComboFamille(famille) technique
+    }
+    class Stella {
+        +Zadvanced()
+        +EnchainementDynamique(solar, ennemi)
+    }
+    class Rairyu {
+        +FusionFoudroyante()
+        +CalmerCelestia(celestia)
+    }
+    class Umi {
+        +ActiveEaudesAbysse()
+    }
+    class technique {
+        -string nom
+        -int coutEnergie
+        -int Degat
+        +GetNom() string
+        +GetCoutEnergie() int
+        +GetDegat() int
+    }
+    class Gobelin
+    class BossGobelin
+    class Akari
+    class Solar
+    class Dialogue
+    class KonoEvenementException
+    class EnergieInsuffisante
+    class TechniqueException
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+    Personnage <|-- FilleDuTemps
+    Personnage <|-- Eto
+    Personnage <|-- Rairyu
+    Personnage <|-- Solar
+    Personnage <|-- Gobelin
+    Gobelin <|-- BossGobelin
+    FilleDuTemps <|-- Celestia
+    FilleDuTemps <|-- Ame
+    FilleDuTemps <|-- Stella
+    FilleDuTemps <|-- Akari
+    FilleDuTemps <|-- Umi
+    Personnage "1" o-- "0..*" technique : repertoire
+    Celestia "1" --> "0..*" Personnage : allies
+    Ame --> Celestia : mere
+    Ame --> Stella : mere
+    Ame --> Akari : mere
+    Stella --> Solar : partenaire
+    Rairyu --> Celestia : interaction
+    KonoEvenementException <|-- EnergieInsuffisante
+    KonoEvenementException <|-- TechniqueException
+~~~
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+**Différence importante avec la première conception :** dans le dépôt actuel, **Personnage n'est pas une classe abstract** et **Umi hérite de FilleDuTemps**, qui hérite elle-même de Personnage. Le diagramme suit ce code réellement versionné. Les relations entre personnages ne sont pas des relations d'héritage.
 
-## License
-For open source projects, say how it is licensed.
+## Exemples de mécaniques C#
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+### Numérotation automatique
+
+Chaque création de **Personnage** incrémente le compteur statique **DernierNumero** et enregistre la valeur dans **Numero**. La méthode **GetNumero()** permet de retrouver l'identifiant de l'instance. Les gobelins ont également leur propre logique de génération de nom.
+
+### Techniques et ressources
+
+Un personnage peut posséder une collection de **technique**. Une technique contient un nom, un coût en énergie, des dégâts et une description. L'utilisation d'une technique cherche à vérifier l'énergie disponible avant d'appliquer ses effets.
+
+### Héritage et transformations
+
+**FilleDuTemps** spécialise **Personnage** avec le Mode Céleste. **Amé** redéfinit son activation avec un coût dépendant du nombre d'utilisations. **Célestia** possède une mécanique de Z Advanced et de perte de contrôle. **Stella**, **Rairyu** et **Umi** disposent aussi de méthodes propres à leurs capacités.
+
+### Associations et combos
+
+**Amé + Eto :** la méthode **ValseEnflamee** consomme de l'énergie chez les deux partenaires et inflige des dégâts à une cible, sous conditions.
+
+**Stella + Solar :** des méthodes décrivent des enchaînements de combat utilisant le partenaire.
+
+**Célestia + Rairyu :** des interactions tentent de gérer le retour au calme après une perte de contrôle.
+
+Ces méthodes servent à étudier les **associations entre objets** : collaborer avec un autre personnage ne veut pas dire hériter de sa classe.
+
+### Exceptions métiers
+
+Le programme définit une exception commune **KonoEvenementException** et plusieurs types spécifiques, notamment **AmeException**, **EtoException**, **CelestiaException**, **EnergieInsuffisante** et **TechniqueException**. Elles permettent de signaler des situations interdites, comme un manque d'énergie ou une action impossible. **StellaException** hérite actuellement directement de **Exception** et constitue un cas à harmoniser.
+
+## Installation et exécution
+
+### Prérequis
+
+- **SDK .NET 10** (cible du fichier tpheritage.csproj).
+- Un terminal et, au choix, Visual Studio, VS Code ou un autre éditeur C#.
+- Une restauration NuGet pour les dépendances déclarées, dont **MySqlConnector 2.6.1**.
+
+### Depuis GitHub
+
+~~~bash
+git clone https://github.com/etowarudsama95-stack/tpkonosekai-heritage1.git
+cd tpkonosekai-heritage1
+dotnet restore
+dotnet run
+~~~
+
+Le même projet est également conservé sur [GitLab (Portfolio 2027)](https://gitlab.com/portfolio-simon-zacharie-2026/tpkonosekai-heritage1).
+
+> Les commandes indiquent la procédure standard d'un projet console .NET. L'exécution complète de cette version n'a pas été validée dans le cadre de la rédaction de ce README. Le fichier bdd.cs est une ébauche de configuration ; aucune base de données active n'est nécessaire pour comprendre les objectifs POO du TP.
+
+## État actuel et pistes d'amélioration
+
+| Domaine | État visible dans le dépôt |
+| --- | --- |
+| Classes de personnages et héritage | Présents |
+| Identifiants via compteur statique | Présents |
+| Techniques, dégâts, énergie et exceptions | Méthodes présentes, tests à consolider |
+| Menu et création de personnages | Présents, à fiabiliser |
+| Combat contre des gobelins | Parcours partiellement codé |
+| Soins depuis la console | Option affichée, non implémentée |
+| Affrontement BossGobelin | Classe présente, parcours console à compléter |
+| Transformations et combos | Méthodes présentes, intégration et corrections à poursuivre |
+| Relations entre personnages | Associations présentes, initialisation à vérifier |
+
+**Points techniques repérés pour la suite :**
+
+- Initialiser les collections et objets utilisés avant d'y accéder, notamment certaines listes de Célestia.
+- Vérifier les conditions de transformation, les calculs de ressources et les méthodes qui lancent encore **NotImplementedException**.
+- Terminer les parcours du menu et gérer les choix invalides sans provoquer d'erreurs.
+- Écrire des tests sur les dégâts, l'énergie, les KO, les combos et les exceptions.
+- Harmoniser les exceptions personnalisées et distinguer les données de fiction des paramètres de combat.
+
+## Contexte du projet
+
+Projet d'entraînement **BTS SIO, option SLAM**, utilisé pour progresser en C#, UML et programmation orientée objet. Cette documentation décrit le travail réellement engagé et les prochaines étapes, sans présenter le prototype comme un jeu achevé.
+
+**Dépôts :** [GitHub](https://github.com/etowarudsama95-stack/tpkonosekai-heritage1) · [GitLab](https://gitlab.com/portfolio-simon-zacharie-2026/tpkonosekai-heritage1)
