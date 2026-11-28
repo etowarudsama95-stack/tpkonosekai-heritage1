@@ -1,30 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 690" role="img" aria-labelledby="t d">
-<title id="t">Diagramme UML de cas d'utilisation du TP KonoSekai</title>
-<desc id="d">L'acteur Joueur est relié aux cas d'utilisation du programme console : choisir, créer, afficher des personnages, préparer un combat, cibler et attaquer. Les soins et le combat de boss sont à terminer.</desc>
-<rect width="900" height="690" fill="#ffffff"/>
-<rect x="350" y="35" width="515" height="628" rx="8" fill="none" stroke="#253e5d" stroke-width="2.5"/>
-<text x="608" y="77" text-anchor="middle" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#173355">Système : TP KonoSekai (console C#)</text>
-<g stroke="#263d59" stroke-width="3.5" stroke-linecap="round" fill="none">
-<circle cx="141" cy="287" r="21"/>
-<line x1="141" y1="308" x2="141" y2="390"/>
-<line x1="100" y1="336" x2="182" y2="336"/>
-<line x1="141" y1="390" x2="105" y2="440"/>
-<line x1="141" y1="390" x2="177" y2="440"/>
-</g>
-<text x="141" y="473" text-anchor="middle" font-family="Arial,sans-serif" font-size="19" font-weight="bold" fill="#173355">Joueur</text>
-<g><line x1="172" y1="350" x2="390" y2="122" stroke="#48627f" stroke-width="1.7"/>
-<line x1="172" y1="350" x2="390" y2="204" stroke="#48627f" stroke-width="1.7"/>
-<line x1="172" y1="350" x2="390" y2="286" stroke="#48627f" stroke-width="1.7"/>
-<line x1="172" y1="350" x2="390" y2="368" stroke="#48627f" stroke-width="1.7"/>
-<line x1="172" y1="350" x2="390" y2="450" stroke="#48627f" stroke-width="1.7"/>
-<line x1="172" y1="350" x2="390" y2="532" stroke="#48627f" stroke-width="1.7"/>
-<line x1="172" y1="350" x2="390" y2="614" stroke="#48627f" stroke-width="1.7"/></g>
-<g font-family="Arial,sans-serif"><ellipse cx="608" cy="122" rx="218" ry="29" fill="#edf4ff" stroke="#285899" stroke-width="2" /><text x="608" y="127" text-anchor="middle" font-size="17" fill="#173355">Choisir / changer un personnage</text>
-<ellipse cx="608" cy="204" rx="218" ry="29" fill="#edf4ff" stroke="#285899" stroke-width="2" /><text x="608" y="209" text-anchor="middle" font-size="17" fill="#173355">Créer un ou plusieurs personnages</text>
-<ellipse cx="608" cy="286" rx="218" ry="29" fill="#edf4ff" stroke="#285899" stroke-width="2" /><text x="608" y="291" text-anchor="middle" font-size="17" fill="#173355">Afficher les personnages créés</text>
-<ellipse cx="608" cy="368" rx="218" ry="29" fill="#edf4ff" stroke="#285899" stroke-width="2" /><text x="608" y="373" text-anchor="middle" font-size="17" fill="#173355">Préparer un combat contre des gobelins</text>
-<ellipse cx="608" cy="450" rx="218" ry="29" fill="#edf4ff" stroke="#285899" stroke-width="2" /><text x="608" y="455" text-anchor="middle" font-size="17" fill="#173355">Sélectionner une cible et attaquer</text>
-<ellipse cx="608" cy="532" rx="218" ry="29" fill="#fff8eb" stroke="#b87322" stroke-width="2" stroke-dasharray="6 5"/><text x="608" y="537" text-anchor="middle" font-size="17" fill="#173355">Soigner un allié (à terminer)</text>
-<ellipse cx="608" cy="614" rx="218" ry="29" fill="#fff8eb" stroke="#b87322" stroke-width="2" stroke-dasharray="6 5"/><text x="608" y="619" text-anchor="middle" font-size="17" fill="#173355">Affronter un boss (à terminer)</text></g>
-<text x="608" y="653" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#9b6429">Pointillés : fonction à terminer dans le prototype</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1020" height="800" viewBox="0 0 1020 800">
+<title>Diagramme UML de cas d'utilisation KonoSekai</title>
+<desc>Acteur joueur en bonhomme à gauche hors d'un grand rectangle système contenant neuf cas d'utilisation sous forme d'ovales. Inclure la sélection de cible pour attaquer, extension de victoire en cas de KO de tous les ennemis.</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="9" refX="9" refY="4.5" orient="auto"><path d="M0 0 L9 4.5 L0 9 Z" fill="#8b3f72"/></marker></defs>
+<rect width="1020" height="800" fill="#ffffff"/>
+<rect x="379" y="20" width="630" height="750" rx="3" fill="#fafcff" stroke="#263a54" stroke-width="3.5"/>
+<text x="690" y="56" text-anchor="middle" font-family="Arial,sans-serif" font-size="21" font-weight="bold" fill="#172d48">TP KonoSekai : application console C#</text>
+<g stroke="#243c5c" stroke-width="4" stroke-linecap="round" fill="none"><circle cx="130" cy="295" r="22"/><path d="M130 317 V402 M89 352 H171 M130 402 L91 456 M130 402 L169 456"/></g>
+<text x="130" y="487" text-anchor="middle" fill="#172d48" font-family="Arial,sans-serif" font-size="20" font-weight="bold">Joueur</text>
+<g><path d="M155 352 L425 105" stroke="#455d7b" stroke-width="1.6" fill="none"/>
+<path d="M155 352 L425 178" stroke="#455d7b" stroke-width="1.6" fill="none"/>
+<path d="M155 352 L425 251" stroke="#455d7b" stroke-width="1.6" fill="none"/>
+<path d="M155 352 L425 324" stroke="#455d7b" stroke-width="1.6" fill="none"/>
+<path d="M155 352 L425 616" stroke="#455d7b" stroke-width="1.6" fill="none"/>
+<path d="M155 352 L425 689" stroke="#455d7b" stroke-width="1.6" fill="none"/></g>
+<g font-family="Arial,sans-serif"><ellipse cx="610" cy="105" rx="185" ry="25" fill="#edf4ff" stroke="#355f9c" stroke-width="1.7" /><text x="610" y="110" text-anchor="middle" fill="#1b3559" font-size="16">Choisir / changer un personnage</text>
+<ellipse cx="610" cy="178" rx="185" ry="25" fill="#edf4ff" stroke="#355f9c" stroke-width="1.7" /><text x="610" y="183" text-anchor="middle" fill="#1b3559" font-size="16">Créer des personnages</text>
+<ellipse cx="610" cy="251" rx="185" ry="25" fill="#edf4ff" stroke="#355f9c" stroke-width="1.7" /><text x="610" y="256" text-anchor="middle" fill="#1b3559" font-size="16">Afficher les personnages</text>
+<ellipse cx="610" cy="324" rx="185" ry="25" fill="#edf4ff" stroke="#355f9c" stroke-width="1.7" /><text x="610" y="329" text-anchor="middle" fill="#1b3559" font-size="16">Combattre des gobelins</text>
+<ellipse cx="610" cy="397" rx="185" ry="25" fill="#edf4ff" stroke="#355f9c" stroke-width="1.7" /><text x="610" y="402" text-anchor="middle" fill="#1b3559" font-size="16">Attaquer un gobelin</text>
+<ellipse cx="610" cy="470" rx="185" ry="25" fill="#edf4ff" stroke="#355f9c" stroke-width="1.7" /><text x="610" y="475" text-anchor="middle" fill="#1b3559" font-size="16">Sélectionner une cible</text>
+<ellipse cx="610" cy="543" rx="185" ry="25" fill="#edf4ff" stroke="#355f9c" stroke-width="1.7" /><text x="610" y="548" text-anchor="middle" fill="#1b3559" font-size="16">Afficher la victoire</text>
+<ellipse cx="610" cy="616" rx="185" ry="25" fill="#fff7ed" stroke="#ba7a30" stroke-width="1.7" stroke-dasharray="6 4"/><text x="610" y="621" text-anchor="middle" fill="#1b3559" font-size="16">Soigner un allié (à terminer)</text>
+<ellipse cx="610" cy="689" rx="185" ry="25" fill="#fff7ed" stroke="#ba7a30" stroke-width="1.7" stroke-dasharray="6 4"/><text x="610" y="694" text-anchor="middle" fill="#1b3559" font-size="16">Affronter un boss (à terminer)</text></g>
+<path d="M610 349 V372" stroke="#455d7b" stroke-width="1.5" fill="none"/>
+<path d="M810 397 H884 V470 H795" stroke="#8b3f72" stroke-width="2" fill="none" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+<text x="887" y="436" font-family="Arial,sans-serif" font-size="15" fill="#8b3f72">&lt;&lt;include&gt;&gt;</text>
+<path d="M425 543 H366 V324 H425" stroke="#8b3f72" stroke-width="2" fill="none" stroke-dasharray="6 5" marker-end="url(#arrow)"/>
+<text x="281" y="517" font-family="Arial,sans-serif" font-size="15" fill="#8b3f72">&lt;&lt;extend&gt;&gt;</text>
+<text x="265" y="538" font-family="Arial,sans-serif" font-size="12" fill="#8b3f72">si tous les ennemis sont KO</text>
+<text x="683" y="754" font-family="Arial,sans-serif" font-size="13" text-anchor="middle" fill="#875821">Ovales orangés en pointillés : cas à terminer</text>
 </svg>
