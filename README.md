@@ -72,15 +72,62 @@ Les méthodes de transformation ou de combo décrites ci-dessous existent surtou
 
 ## Diagramme UML de cas d'utilisation
 
-Un **diagramme de cas d'utilisation UML** présente les actions accessibles à un **acteur**, représenté par un bonhomme, avec des **ovales** pour les fonctionnalités et un **rectangle** pour la frontière du système.
+Cette version est calquée sur le **pattern PlantUML** du TP [tpUSECASE](https://gitlab.com/portfolio-simon-zacharie-2026/tpUSECASE) : un acteur représenté par un bonhomme **à l'extérieur** du système, un **rectangle** (« package ») délimitant l'application, des **ovales** pour les cas d'utilisation et des dépendances UML explicites.
 
-![Diagramme UML de cas d'utilisation de KonoSekai, avec acteur Joueur et ovales](docs/use-case-konosekai.svg)
+![Use case UML KonoSekai avec acteur, rectangle et relations include et extend](docs/use-case-konosekai.svg)
 
-[Ouvrir le diagramme en grand](docs/use-case-konosekai.svg)
+[Afficher le diagramme en grand](docs/use-case-konosekai.svg)
 
-**Acteur :** le joueur qui utilise l'application console. **Système :** le TP KonoSekai en C#. Les cas en pointillés sont prévus ou incomplets, et ne sont pas présentés comme terminés.
+### Source PlantUML
 
-Le diagramme montre les **besoins fonctionnels visibles au niveau du menu**. La gestion de l'énergie, les transformations, les classes spécialisées, le polymorphisme et les exceptions sont des **règles et mécanismes internes** : ils sont documentés dans les sections techniques et dans le diagramme de classes, et non confondus avec des fonctionnalités directement accessibles par le joueur.
+~~~plantuml
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor "Joueur" as joueur
+
+rectangle "TP KonoSekai : application console C#" {
+    usecase "Choisir / changer\nun personnage" as choisir
+    usecase "Créer un ou plusieurs\npersonnages" as creer
+    usecase "Afficher les personnages\ncréés" as afficher
+    usecase "Combattre des gobelins" as combattre
+    usecase "Attaquer un gobelin" as attaquer
+    usecase "Sélectionner une cible" as cibler
+    usecase "Afficher la victoire" as victoire
+    usecase "Soigner un allié\n[à terminer]" as soigner
+    usecase "Affronter un boss\n[à terminer]" as boss
+}
+
+joueur -- choisir
+joueur -- creer
+joueur -- afficher
+joueur -- combattre
+joueur -- soigner
+joueur -- boss
+combattre -- attaquer
+attaquer ..> cibler : <<include>>
+victoire ..> combattre : <<extend>>\n[tous les gobelins vaincus]
+
+note right of soigner
+  Option du menu présente,
+  logique non implémentée.
+end note
+note right of boss
+  Classe BossGobelin présente,
+  branche du menu à terminer.
+end note
+@enduml
+~~~
+
+### Sens des relations utilisées
+
+| Relation | Règle | Application à KonoSekai |
+| --- | --- | --- |
+| **Association** (trait plein) | L'acteur peut effectuer le cas d'utilisation. | Le joueur peut créer ou choisir un personnage. |
+| **\`<<include>>\`** (flèche pointillée) | Un cas d'utilisation intègre **obligatoirement** un sous-cas. La flèche va du cas principal vers le cas inclus. | **Attaquer un gobelin** inclut **Sélectionner une cible**, car le menu demande le numéro de l'ennemi à attaquer. |
+| **\`<<extend>>\`** (flèche pointillée) | Un cas additionnel se produit **seulement si une condition est remplie**. La flèche va du cas optionnel vers le cas de base. | **Afficher la victoire** étend **Combattre des gobelins** si tous les ennemis sont KO. |
+
+**Limites du prototype :** les soins et le combat de boss sont signalés comme inachevés, car les options ou classes existent sans parcours complet. Le diagramme décrit l'intention du menu ; il ne garantit pas que toutes les branches s'exécutent correctement. Les transformations et combos restent des méthodes de classes, pas des actions directement exposées par le menu.
 
 ## Diagramme de classes
 
